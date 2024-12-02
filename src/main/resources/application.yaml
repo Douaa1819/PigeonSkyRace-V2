@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/pigeonSkyRace
+    url: jdbc:postgresql://localhost:5432/pigeonSky
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
@@ -25,6 +25,8 @@ spring:
       org.springframework.web: DEBUG
       com.ys.skywingracing: DEBUG
 
+  liquibase:
+    enabled: false
 
   contact:
     email: douaachemnane@gmail.com
