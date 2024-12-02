@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/pigeonSkyRace
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  server:
+    port: 8081
+    servlet:
+      context-path: /
+
+  logging:
+    level:
+      org.springframework.web: DEBUG
+      com.ys.skywingracing: DEBUG
+
+
+  contact:
+    email: douaachemnane@gmail.com
+  prod-server:
+    url: http://localhost:8081
+  project:
+    version: 1.0
+    title: Pigeon Sky Race
+    description: Pigeon Sky Race
