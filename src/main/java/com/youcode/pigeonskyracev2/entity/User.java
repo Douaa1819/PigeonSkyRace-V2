@@ -2,7 +2,9 @@ package com.youcode.pigeonskyracev2.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -19,8 +21,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    private String role = "ROLE_USER";
+
+
 
 }
