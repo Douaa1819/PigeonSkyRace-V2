@@ -7,7 +7,7 @@ on:
     branches: ["master"]
 
 env:
-  DOCKER_HUB_REPO: ${{ secrets.DOCKER_HUB_USERNAME }}/pigeonSky
+  DOCKER_HUB_REPO: ${{ lower(secrets.DOCKER_HUB_USERNAME) }}/pigeonsky
 
 jobs:
   build-and-deploy:
