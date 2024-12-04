@@ -26,6 +26,10 @@ import java.time.LocalDateTime;
             this.userMapper = userMapper;
         }
 
+        private Role getDefaultRole() {
+        return Role.ROLE_USER;
+          }
+
         @Override
         public User createUser(UserRegisterRequest userRequest) {
             if (userRepository.existsByUsername(userRequest.username())) {
@@ -37,7 +41,7 @@ import java.time.LocalDateTime;
 
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRole(Role.ROLE_USER);
+            user.setRole(getDefaultRole());
             user.setCreatedAt(LocalDateTime.now());
             return userRepository.save(user);
         }
