@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/v1/users/register").permitAll()
+                        .requestMatchers("/api/v1/users/register", "/api/v1/users/login").permitAll()
                         .anyRequest().authenticated()
                 ) .httpBasic(httpBasic -> {})
                 .exceptionHandling(exception -> exception
