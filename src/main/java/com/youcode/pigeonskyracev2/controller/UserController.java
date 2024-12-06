@@ -1,6 +1,5 @@
 package com.youcode.pigeonskyracev2.controller;
 
-import com.youcode.pigeonskyracev2.dto.User.request.LoginRequest;
 import com.youcode.pigeonskyracev2.dto.User.request.UserRegisterRequest;
 import com.youcode.pigeonskyracev2.dto.User.response.LoginResponse;
 import com.youcode.pigeonskyracev2.dto.User.response.UserResponse;
@@ -11,9 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,25 +41,7 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> loginUser(@RequestBody @Valid LoginRequest loginRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            loginRequest.username(),
-                            loginRequest.password()
-                    )
-            );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            LoginResponse loginResponse = new LoginResponse(
-                    "Login successful"
-            );
-
-            return new ResponseEntity<>(loginResponse, HttpStatus.OK);
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(new LoginResponse("Invalid credentials"), HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<LoginResponse> loginUser() {
+        return new ResponseEntity<>(new LoginResponse("Login successful"), HttpStatus.OK);
     }
 }
