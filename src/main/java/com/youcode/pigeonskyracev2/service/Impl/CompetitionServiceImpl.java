@@ -19,13 +19,8 @@ public class CompetitionServiceImpl implements CompetitionService {
     private final UserRepository userRepository;
     @Override
     public CompetitionResponseDTO createCompetition(CompetitionRequestDTO competitionRequestDTO) {
-        User user = userRepository.findById(competitionRequestDTO.userId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found!"));
 
         Competition competition = competitionMapper.toEntity(competitionRequestDTO);
-
-        competition.setUser(user);
-
         competition = competitionRepository.save(competition);
 
         return competitionMapper.toResponse(competition);

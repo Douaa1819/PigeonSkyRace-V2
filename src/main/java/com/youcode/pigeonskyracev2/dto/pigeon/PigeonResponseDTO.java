@@ -8,8 +8,5 @@ public record PigeonResponseDTO(
         String numberBague,
         Gender gender,
         int age,
-        String color,
-        Long userId,
-        Long competitionId
-) {
-}
+        String color
+) {}

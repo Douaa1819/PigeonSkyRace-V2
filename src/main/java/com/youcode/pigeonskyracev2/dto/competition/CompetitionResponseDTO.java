@@ -13,7 +13,5 @@ public record CompetitionResponseDTO(
         LocalDateTime endTime,
         double latitudeGPS,
         double longitudeGPS,
-        int pigeonCount,
-        Long userId,
-        List<PigeonResponseDTO> pigeons
+        int pigeonCount
 ) {}

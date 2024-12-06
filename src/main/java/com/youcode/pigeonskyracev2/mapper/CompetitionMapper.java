@@ -12,8 +12,5 @@ import org.mapstruct.Mappings;
 
 public interface CompetitionMapper {
     Competition toEntity(CompetitionRequestDTO competitionRequestDTO);
-    @Mappings({
-            @Mapping(target = "pigeons", ignore = true)
-    })
     CompetitionResponseDTO toResponse(Competition competition);
 }

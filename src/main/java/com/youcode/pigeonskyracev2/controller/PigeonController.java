@@ -18,7 +18,8 @@ public class PigeonController {
 
     @PostMapping
     public ResponseEntity<PigeonResponseDTO> createPigeon(@Valid @RequestBody PigeonRequestDTO pigeonRequestDTO) {
-        PigeonResponseDTO pigeonResponseDTO = pigeonService.createPigeon(pigeonRequestDTO);
-        return new ResponseEntity<>(pigeonResponseDTO, HttpStatus.CREATED);
+        PigeonResponseDTO createdPigeon = pigeonService.createPigeon(pigeonRequestDTO);
+        return new ResponseEntity<>(createdPigeon, HttpStatus.CREATED);
     }
+
 }

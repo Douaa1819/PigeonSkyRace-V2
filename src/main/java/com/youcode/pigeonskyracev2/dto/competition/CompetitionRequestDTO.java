@@ -8,6 +8,5 @@ public record CompetitionRequestDTO(
         LocalDateTime endTime,
         double latitudeGPS,
         double longitudeGPS,
-        int pigeonCount,
-        Long userId
+        int pigeonCount
 ) {}
