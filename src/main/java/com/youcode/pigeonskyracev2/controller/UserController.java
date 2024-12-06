@@ -4,7 +4,6 @@ import com.youcode.pigeonskyracev2.dto.User.request.RoleUpdateRequest;
 import com.youcode.pigeonskyracev2.dto.User.request.UserRegisterRequest;
 import com.youcode.pigeonskyracev2.dto.User.response.LoginResponse;
 import com.youcode.pigeonskyracev2.dto.User.response.UserResponse;
-import com.youcode.pigeonskyracev2.entity.Role;
 import com.youcode.pigeonskyracev2.entity.User;
 import com.youcode.pigeonskyracev2.mapper.UserMapper;
 import com.youcode.pigeonskyracev2.service.RoleService;
@@ -13,12 +12,11 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v2/users")
 public class UserController {
 
     private final UserService userService;

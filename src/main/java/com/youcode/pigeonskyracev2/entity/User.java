@@ -1,6 +1,7 @@
 package com.youcode.pigeonskyracev2.entity;
 
 
+import com.youcode.pigeonskyracev2.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,6 +29,13 @@ public class User {
     private LocalDateTime createdAt;
 
     public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.createdAt = LocalDateTime.now();
+        this.role = Role.ROLE_USER;
+    }
+    public User(String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
