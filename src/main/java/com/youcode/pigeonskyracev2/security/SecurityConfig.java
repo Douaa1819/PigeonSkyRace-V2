@@ -1,15 +1,14 @@
 package com.youcode.pigeonskyracev2.security;
 
 import com.youcode.pigeonskyracev2.exception.CustomAccessDeniedHandler;
-import com.youcode.pigeonskyracev2.service.Impl.UserDetailsServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
@@ -18,12 +17,13 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-    @Configuration
-    public class SecurityConfig {
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
 
         private final CustomAuthenticationProvider customAuthenticationProvider;
 
-        public SecurityConfig(CustomAuthenticationProvider customAuthenticationProvider) {
+        public SecurityConfig(@Lazy CustomAuthenticationProvider customAuthenticationProvider) {
             this.customAuthenticationProvider = customAuthenticationProvider;
         }
 
@@ -33,7 +33,7 @@ import org.springframework.security.web.SecurityFilterChain;
                     .csrf(csrf -> csrf.disable())
                     .authorizeHttpRequests(authz -> authz
                             .requestMatchers("/api/v1/users/register", "/api/v1/users/login").permitAll()
-                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .requestMatchers("/admin/**","/api/v1/users/{userId}/role").hasRole("ADMIN")
                             .requestMatchers("/user/**").hasRole("USER")
                             .requestMatchers("/organizer/**").hasRole("ORGANIZER")
                             .anyRequest().authenticated()
@@ -60,17 +60,17 @@ import org.springframework.security.web.SecurityFilterChain;
             };
         }
 
+
         @Bean
         public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
         }
 
 
-
-    @Bean
-    @Profile("test")
-    public PasswordEncoder testPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
+        @Bean
+        @Profile("test")
+        public PasswordEncoder testPasswordEncoder() {
+            return NoOpPasswordEncoder.getInstance();
+        }
 
 }
