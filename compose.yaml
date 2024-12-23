@@ -3,8 +3,8 @@ services:
   springboot-app:
     container_name: pigeon-SkyRace
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: ../Dockerfile
     ports:
       - "8081:8081"
     environment:

@@ -4,8 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -20,9 +22,11 @@ public class GlobalExceptionHandler {
                 HttpStatus.CONFLICT.value(),
                 ex.getMessage(),
                 LocalDateTime.now()
+
         );
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
+
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
@@ -42,6 +46,15 @@ public class GlobalExceptionHandler {
         );
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestParam(MissingServletRequestParameterException ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                "Missing request parameter: " + ex.getParameterName(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

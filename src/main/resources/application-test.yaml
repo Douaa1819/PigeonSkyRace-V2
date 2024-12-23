@@ -1,41 +1,14 @@
 spring:
-  profiles:
-    active: test
+  config:
+    activate:
+      on-profile: test
   datasource:
-    url: jdbc:postgresql://localhost:5432/pigeonSky
-    username: postgres
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
     password: password
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 10
-
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  server:
-    port: 8082
-    servlet:
-      context-path: /test
-
-  logging:
-    level:
-      org.springframework.web: DEBUG
-      com.ys.skywingracing: DEBUG
-
-  liquibase:
-    enabled: false
-
-  contact:
-    email: douaachemnane@gmail.com
-
-  prod-server:
-    url: http://localhost:8081
-  project:
-    version: 1.0
-    title: Pigeon Sky Race
-    description: Pigeon Sky Race

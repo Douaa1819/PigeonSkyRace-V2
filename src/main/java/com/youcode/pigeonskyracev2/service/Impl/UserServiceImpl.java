@@ -2,8 +2,8 @@ package com.youcode.pigeonskyracev2.service.Impl;
 
 import com.youcode.pigeonskyracev2.dto.User.request.UserRegisterRequest;
 import com.youcode.pigeonskyracev2.dto.User.response.UserResponse;
-import com.youcode.pigeonskyracev2.entity.Role;
 import com.youcode.pigeonskyracev2.entity.User;
+import com.youcode.pigeonskyracev2.entity.enums.Role;
 import com.youcode.pigeonskyracev2.exception.UsernameAlreadyExistsException;
 import com.youcode.pigeonskyracev2.mapper.UserMapper;
 import com.youcode.pigeonskyracev2.repository.UserRepository;

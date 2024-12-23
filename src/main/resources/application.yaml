@@ -1,4 +1,6 @@
 spring:
+  profiles:
+   active: test
   datasource:
     url: jdbc:postgresql://localhost:5432/pigeonSky
     username: postgres
@@ -36,3 +38,18 @@ spring:
     version: 1.0
     title: Pigeon Sky Race
     description: Pigeon Sky Race
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, info, metrics, env, uptime
+    endpoint:
+      health:
+        show-details: always
+        group:
+          live:
+            include: uptime, db, diskspace, heap
+      security:
+        enabled: false
+
