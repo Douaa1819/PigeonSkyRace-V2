@@ -38,6 +38,7 @@ spring:
     version: 1.0
     title: Pigeon Sky Race
     description: Pigeon Sky Race
+<<<<<<< HEAD
 
   management:
     endpoints:
@@ -53,3 +54,5 @@ spring:
       security:
         enabled: false
 
+=======
+>>>>>>> 64b278715c50c98265f7ab2a0e09e738d8058a98
