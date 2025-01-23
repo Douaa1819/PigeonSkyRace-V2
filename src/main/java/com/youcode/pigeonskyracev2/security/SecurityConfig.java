@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -31,6 +30,7 @@ public class SecurityConfig {
                             .requestMatchers("/api/v2/users/register", "/api/v2/users/login").permitAll()
                             .requestMatchers("/admin/**","/api/v2/users/{userId}/role").hasRole("ADMIN")
                             .requestMatchers("/api/v2/pigeons").hasRole("USER")
+                            .requestMatchers("/actuator/**").permitAll()
                             .requestMatchers("/api/v2/competitions").hasRole("ORGANIZER")
                             .anyRequest().authenticated()
                     )
